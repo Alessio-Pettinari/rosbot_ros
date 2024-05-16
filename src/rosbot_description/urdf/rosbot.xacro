@@ -11,14 +11,14 @@
   <xacro:include filename="$(find rosbot_description)/urdf/materials.xacro" />
   <xacro:include filename="$(find rosbot_description)/urdf/rosbot.gazebo" />
 
-  <link name="base_link"></link>
+  <link name="$(arg robot_namespace)/base_link"></link>
   <joint name="base_link_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="base_link"/>
-    <child link="body_link"/>
+    <parent link="$(arg robot_namespace)/base_link"/>
+    <child link="$(arg robot_namespace)/body_link"/>
   </joint>
 
-  <link name='body_link'>
+  <link name='$(arg robot_namespace)/body_link'>
     <pose>0 0 0.1 0 0 0</pose>
 
     <inertial>
@@ -48,11 +48,11 @@
   <joint name="top_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="body_link"/>
-    <child link="top"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
+    <child link="$(arg robot_namespace)/top"/>
   </joint>
 
-  <link name='top'>
+  <link name='$(arg robot_namespace)/top'>
     <pose>0 0 0 0 0 0</pose>
 
     <inertial>
@@ -69,7 +69,7 @@
     </visual>
   </link>
 
-  <link name="front_left_wheel">
+  <link name="$(arg robot_namespace)/front_left_wheel">
     <collision>
       <origin xyz="0 -0.014 0" rpy="${pi/2} 0 0"/>
       <geometry>
@@ -98,7 +98,7 @@
     </inertial>
   </link>
 
-  <link name="front_right_wheel">
+  <link name="$(arg robot_namespace)/front_right_wheel">
     <collision>
       <origin xyz="0 0.014 0" rpy="${pi/2} 0 0"/>
       <geometry>
@@ -127,7 +127,7 @@
     </inertial>
   </link>
 
-  <link name="rear_left_wheel">
+  <link name="$(arg robot_namespace)/rear_left_wheel">
     <collision>
       <origin xyz="0 -0.014 0" rpy="${pi/2} 0 0"/>
       <geometry>
@@ -156,7 +156,7 @@
     </inertial>
   </link>
 
-  <link name="rear_right_wheel">
+  <link name="$(arg robot_namespace)/rear_right_wheel">
     <collision>
       <origin xyz="0 0.014 0" rpy="${pi/2} 0 0"/>
       <geometry>
@@ -188,8 +188,8 @@
 
   <joint type="continuous" name="front_left_wheel_hinge">
     <origin xyz="0.05 0.11 0" rpy="0 0 0"/>
-    <child link="front_left_wheel"/>
-    <parent link="body_link"/>
+    <child link="$(arg robot_namespace)/front_left_wheel"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="1" velocity="10"/>
     <joint_properties damping="5.0" friction="1.0"/>
@@ -207,8 +207,8 @@
 
   <joint type="continuous" name="front_right_wheel_hinge">
     <origin xyz="0.05 -0.11 0" rpy="0 0 0"/>
-    <child link="front_right_wheel"/>
-    <parent link="body_link"/>
+    <child link="$(arg robot_namespace)/front_right_wheel"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="1" velocity="10"/>
     <joint_properties damping="5.0" friction="1.0"/>
@@ -226,8 +226,8 @@
 
   <joint type="continuous" name="rear_left_wheel_hinge">
     <origin xyz="-0.055 0.11 0" rpy="0 0 0"/>
-    <child link="rear_left_wheel"/>
-    <parent link="body_link"/>
+    <child link="$(arg robot_namespace)/rear_left_wheel"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="1" velocity="10"/>
     <joint_properties damping="5.0" friction="1.0"/>
@@ -245,8 +245,8 @@
 
   <joint type="continuous" name="rear_right_wheel_hinge">
     <origin xyz="-0.055 -0.11 0" rpy="0 0 0"/>
-    <child link="rear_right_wheel"/>
-    <parent link="body_link"/>
+    <child link="$(arg robot_namespace)/rear_right_wheel"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="1" velocity="10"/>
     <joint_properties damping="5.0" friction="1.0"/>
@@ -266,14 +266,14 @@
   <joint name="astra_joint" type="fixed">
     <axis xyz="0 0 0" />
     <origin xyz="-0.03 0 0.18" rpy="0 0 0"/>
-    <parent link="body_link"/>
-    <child link="camera_link"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
+    <child link="$(arg robot_namespace)/camera_link"/>
   </joint>
 
-  <link name="camera_link">
+  <link name="$(arg robot_namespace)/camera_link">
     <collision>
       <origin xyz="0.02 0 0" rpy="0 0 0"/>
-      <geometry>0
+      <geometry>
         <box size="0.001 0.001 0.001"/>
       </geometry>
     </collision>
@@ -295,31 +295,31 @@
 
   <joint name="camera_optical_joint" type="fixed">
     <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
-    <parent link="camera_link"/>
-    <child link="camera_rgb_frame"/>
+    <parent link="$(arg robot_namespace)/camera_link"/>
+    <child link="$(arg robot_namespace)/camera_rgb_frame"/>
   </joint>
 
-  <link name="camera_rgb_frame">
+  <link name="$(arg robot_namespace)/camera_rgb_frame">
   </link>
 
   <joint name="camera_depth_joint" type="fixed">
     <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
-    <parent link="camera_link"/>
-    <child link="camera_depth_frame"/>
+    <parent link="$(arg robot_namespace)/camera_link"/>
+    <child link="$(arg robot_namespace)/camera_depth_frame"/>
   </joint>
 
-  <link name="camera_depth_frame">
+  <link name="$(arg robot_namespace)/camera_depth_frame">
   </link>
 
   <joint name="rplidar_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="0.02 0 0.058" rpy="0 0 3.14"/>
-    <parent link="body_link"/>
-    <child link="laser"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
+    <child link="$(arg robot_namespace)/laser"/>
   </joint>
 
   <!-- rplidar Laser -->
-  <link name="laser">
+  <link name="$(arg robot_namespace)/laser">
     <collision>
       <origin xyz="0 0 0" rpy="1.5707 0 4.71"/>
       <geometry>
@@ -345,33 +345,33 @@
   <joint name="range_fl_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="0.1 0.05 0.01" rpy="0 0 0.13 "/>
-    <parent link="body_link"/>
-    <child link="range_fl"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
+    <child link="$(arg robot_namespace)/range_fl"/>
   </joint>
-  <link name="range_fl"></link>
+  <link name="$(arg robot_namespace)/range_fl"></link>
 
   <joint name="range_fr_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="0.1 -0.05 0.01" rpy="0 0 -0.13 "/>
-    <parent link="body_link"/>
-    <child link="range_fr"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
+    <child link="$(arg robot_namespace)/range_fr"/>
   </joint>
-  <link name="range_fr"></link>
+  <link name="$(arg robot_namespace)/range_fr"></link>
 
   <joint name="range_rl_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="-0.1 0.05 0.01" rpy="0 0 3.01 "/>
-    <parent link="body_link"/>
-    <child link="range_rl"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
+    <child link="$(arg robot_namespace)/range_rl"/>
   </joint>
-  <link name="range_rl"></link>
+  <link name="$(arg robot_namespace)/range_rl"></link>
 
   <joint name="range_rr_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="-0.1 -0.05 0.01" rpy="0 0 3.27 "/>
-    <parent link="body_link"/>
-    <child link="range_rr"/>
+    <parent link="$(arg robot_namespace)/body_link"/>
+    <child link="$(arg robot_namespace)/range_rr"/>
   </joint>
-  <link name="range_rr"></link>
+  <link name="$(arg robot_namespace)/range_rr"></link>
 
 </robot>
