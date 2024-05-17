@@ -15,8 +15,8 @@
       <topicName>cmd_vel</topicName>
       <commandTopic>cmd_vel</commandTopic>
       <broadcastTF>true</broadcastTF>
-      <odometryTopic>/$(arg robot_namespace)/odom</odometryTopic>
-      <odometryFrame>$(arg robot_namespace)/odom</odometryFrame>
+      <odometryTopic>/$(arg robot_namespace)/odom_ft</odometryTopic>
+      <odometryFrame>$(arg robot_namespace)/odom_ft</odometryFrame>
       <covariance_x>0.000100</covariance_x>
       <covariance_y>0.000100</covariance_y>
       <covariance_yaw>0.010000</covariance_yaw>
