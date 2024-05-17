@@ -15,7 +15,7 @@
   <group ns="first">
     <param name="robot_description" command="$(find xacro)/xacro '$(find rosbot_description)/urdf/rosbot.xacro' robot_namespace:=first"/>
     <node name="rosbot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-          args="-urdf -param robot_description -model rosbot -y 0"/>
+          args="-urdf -param robot_description -model rosbot -z 1"/>
 
     <rosparam command="load" file="$(find joint_state_controller)/joint_state_controller.yaml" />
     <node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller"/>
@@ -28,21 +28,21 @@
   <group ns="second">
     <param name="robot_description" command="$(find xacro)/xacro '$(find rosbot_description)/urdf/rosbot.xacro' robot_namespace:=second"/>
     <node name="rosbot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-          args="-urdf -param robot_description -model rosbot_s -y 2.5"/>
+          args="-urdf -param robot_description -model rosbot_s -y 2.5 -z 1"/>
 
     <rosparam command="load" file="$(find joint_state_controller)/joint_state_controller.yaml" />
     <node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller"/>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
-      <!-- <param name="tf_prefix" value="second"/> -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"> 
     </node>
+
     <node pkg="tf" type="static_transform_publisher" name="odom" args="0 2.5 0 0 0 0 map second/odom 100" />
   </group>
 
   <include file="$(find rosbot_gazebo)/launch/rosbot_world.launch"></include>
 
   <!-- SOLO PER TEST, DA NON USARE POI (verranno sostituiti dalla localizzazione) -->
-  <node pkg="tf" type="static_transform_publisher" name="a" args="0 0 0 0 0 0 first/odom first/base_link 100" />
-  <node pkg="tf" type="static_transform_publisher" name="b" args="0 0 0 0 0 0 second/odom second/base_link 100" />
+  <!-- <node pkg="tf" type="static_transform_publisher" name="a" args="0 0 0 0 0 0 first/odom first/base_link 100" />
+  <node pkg="tf" type="static_transform_publisher" name="b" args="0 0 0 0 0 0 second/odom second/base_link 100" /> -->
 
   <!-- Show in Rviz   -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rosbot_description)/rviz/rosbot.rviz" required="true" output="screen"/>

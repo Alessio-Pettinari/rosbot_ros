@@ -4,6 +4,7 @@
   xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:arg name="robot_namespace" default=""/>
+  <!-- <xacro:arg name="init_y" default="0"/> -->
 
   <xacro:property name="cameraSize" value="0.05"/>
   <xacro:property name="cameraMass" value="0.1"/>
@@ -373,5 +374,36 @@
     <child link="$(arg robot_namespace)/range_rr"/>
   </joint>
   <link name="$(arg robot_namespace)/range_rr"></link>
+
+
+  <!-- <gazebo>
+  <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
+    <frameName>world</frameName>
+    <bodyName>$(arg robot_namespace)/base_link</bodyName>
+    <topicName>$(arg robot_namespace)/odom</topicName>
+    <updateRate>30.0</updateRate>
+  </plugin>
+  </gazebo> -->
+
+ <!-- <link name="map">
+    <inertial>
+      <mass value="5"/>
+      <origin xyz="0 0 0.04" rpy=" 0 0 0"/>
+      <inertia ixx="0.01" ixy="0.01" ixz="0" iyy="0.01" iyz="0.01" izz="0.01" />
+    </inertial>
+  </link>
+
+ <joint name="map_joint" type="floating">
+    <parent link="map"/>
+    <child link="$(arg robot_namespace)/base_link"/>
+    <origin xyz="0 $(arg init_y) 0" rpy="0 0 0"/>
+ </joint>
+
+ <link name="top_link"/>
+ <joint name="top_joint" type="fixed">
+    <parent link="top_link"/>
+    <child link="map"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+ </joint> -->
 
 </robot>
