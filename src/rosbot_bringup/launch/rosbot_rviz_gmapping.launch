@@ -3,6 +3,8 @@
 
   <include file="$(find rosbot_bringup)/launch/rosbot_rviz.launch"></include>
 
-  <include file="$(find rosbot_bringup)/launch/gmapping.launch"></include>
+
+<!-- SOLO PER LOCALIZZAZIONE (SLAM-creazione mappa) -->
+  <!-- <include file="$(find rosbot_bringup)/launch/gmapping.launch"></include> -->
 
 </launch>
