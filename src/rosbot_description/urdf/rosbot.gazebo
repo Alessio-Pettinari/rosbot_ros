@@ -12,8 +12,8 @@
       <rightFrontJoint>front_right_wheel_hinge</rightFrontJoint>
       <leftRearJoint>rear_left_wheel_hinge</leftRearJoint>
       <rightRearJoint>rear_right_wheel_hinge</rightRearJoint>
-      <topicName>cmd_vel</topicName>
-      <commandTopic>cmd_vel</commandTopic>
+      <topicName>/$(arg robot_namespace)/cmd_vel</topicName>
+      <commandTopic>/$(arg robot_namespace)/cmd_vel</commandTopic>
       <broadcastTF>true</broadcastTF>
       <odometryTopic>/$(arg robot_namespace)/odom_ft</odometryTopic>
       <odometryFrame>$(arg robot_namespace)/odom_ft</odometryFrame>
@@ -29,42 +29,42 @@
     </plugin>
   </gazebo>
 
-  <gazebo reference="base_link">
+  <gazebo reference="$(arg robot_namespace)/base_link">
     <material>Gazebo/White</material>
   </gazebo>
 
-  <gazebo reference="top">
+  <gazebo reference="$(arg robot_namespace)/top">
     <material>Gazebo/Red</material>
   </gazebo>
 
 
-  <gazebo reference="laser">
+  <gazebo reference="$(arg robot_namespace)/laser">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="camera_link">
+  <gazebo reference="$(arg robot_namespace)/camera_link">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="front_left_wheel">
+  <gazebo reference="$(arg robot_namespace)/front_left_wheel">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="front_right_wheel">
+  <gazebo reference="$(arg robot_namespace)/front_right_wheel">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="rear_left_wheel">
+  <gazebo reference="$(arg robot_namespace)/rear_left_wheel">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="rear_right_wheel">
+  <gazebo reference="$(arg robot_namespace)/rear_right_wheel">
     <material>Gazebo/Black</material>
   </gazebo>
 
   <!-- astra -->
 
-  <gazebo reference="camera_link">
+  <gazebo reference="$(arg robot_namespace)/camera_link">
     <sensor type="depth" name="openni_camera_camera">
       <always_on>1</always_on>
       <visualize>true</visualize>
@@ -87,12 +87,12 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>10.0</updateRate>
         <cameraName>camera</cameraName>
-        <frameName>camera_depth_frame</frameName>
-        <imageTopicName>color/image_raw</imageTopicName>
-        <depthImageTopicName>depth/image_raw</depthImageTopicName>
-        <pointCloudTopicName>depth/points</pointCloudTopicName>
-        <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
-        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+        <frameName>$(arg robot_namespace)/camera_depth_frame</frameName>
+        <imageTopicName>/$(arg robot_namespace)/color/image_raw</imageTopicName>
+        <depthImageTopicName>/$(arg robot_namespace)/depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>/$(arg robot_namespace)/depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>/$(arg robot_namespace)/color/camera_info</cameraInfoTopicName>
+        <depthImageCameraInfoTopicName>/$(arg robot_namespace)/depth/camera_info</depthImageCameraInfoTopicName>
         <pointCloudCutoff>0.4</pointCloudCutoff>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
@@ -183,7 +183,7 @@
   </gazebo> -->
 
   <!-- RpLidar A2 using CPU -->
-  <gazebo reference="laser">
+  <gazebo reference="$(arg robot_namespace)/laser">
     <sensor type="ray" name="head_rplidar_sensor">
       <pose>0 0 0.06 0 0 0</pose>
       <visualize>false</visualize>
@@ -209,8 +209,8 @@
         </noise>
       </ray>
       <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_laser.so">
-        <topicName>scan</topicName>
-        <frameName>laser</frameName>
+        <topicName>/$(arg robot_namespace)/scan</topicName>
+        <frameName>$(arg robot_namespace)/laser</frameName>
       </plugin>
     </sensor>
   </gazebo> 
@@ -248,7 +248,7 @@
     </sensor>
   </gazebo> -->
 
-  <gazebo reference="top">
+  <gazebo reference="$(arg robot_namespace)/top">
     <gravity>true</gravity>
     <sensor name="imu_sensor" type="imu">
       <always_on>true</always_on>
@@ -268,7 +268,7 @@
     </sensor>
   </gazebo>
 
-  <gazebo reference="range_fl">
+  <gazebo reference="$(arg robot_namespace)/range_fl">
     <sensor type="ray" name="range_fl">
       <pose>0 0 0 0 0 0</pose>
       <update_rate>5</update_rate>
@@ -297,15 +297,15 @@
         <gaussianNoise>0.005</gaussianNoise>
         <alwaysOn>true</alwaysOn>
         <updateRate>5</updateRate>
-        <topicName>range/fl</topicName>
-        <frameName>range_fl</frameName>
+        <topicName>/$(arg robot_namespace)/range/fl</topicName>
+        <frameName>$(arg robot_namespace)/range_fl</frameName>
         <fov>0.1</fov>
         <radiation>ultrasound</radiation>
       </plugin>
     </sensor>
   </gazebo>
 
-  <gazebo reference="range_fr">
+  <gazebo reference="$(arg robot_namespace)/range_fr">
     <sensor type="ray" name="range_fr">
       <pose>0 0 0 0 0 0</pose>
       <update_rate>5</update_rate>
@@ -334,15 +334,15 @@
         <gaussianNoise>0.005</gaussianNoise>
         <alwaysOn>true</alwaysOn>
         <updateRate>5</updateRate>
-        <topicName>range/fr</topicName>
-        <frameName>range_fr</frameName>
+        <topicName>/$(arg robot_namespace)/range/fr</topicName>
+        <frameName>$(arg robot_namespace)/range_fr</frameName>
         <fov>0.1</fov>
         <radiation>ultrasound</radiation>
       </plugin>
     </sensor>
   </gazebo>
 
-  <gazebo reference="range_rl">
+  <gazebo reference="$(arg robot_namespace)/range_rl">
     <sensor type="ray" name="range_rl">
       <pose>0 0 0 0 0 0</pose>
       <update_rate>5</update_rate>
@@ -371,15 +371,15 @@
         <gaussianNoise>0.005</gaussianNoise>
         <alwaysOn>true</alwaysOn>
         <updateRate>5</updateRate>
-        <topicName>range/rl</topicName>
-        <frameName>range_rl</frameName>
+        <topicName>/$(arg robot_namespace)/range/rl</topicName>
+        <frameName>$(arg robot_namespace)/range_rl</frameName>
         <fov>0.1</fov>
         <radiation>ultrasound</radiation>
       </plugin>
     </sensor>
   </gazebo>
 
-  <gazebo reference="range_rr">
+  <gazebo reference="$(arg robot_namespace)/range_rr">
     <sensor type="ray" name="range_rr">
       <pose>0 0 0 0 0 0</pose>
       <update_rate>5</update_rate>
@@ -408,8 +408,8 @@
         <gaussianNoise>0.005</gaussianNoise>
         <alwaysOn>true</alwaysOn>
         <updateRate>5</updateRate>
-        <topicName>range/rr</topicName>
-        <frameName>range_rr</frameName>
+        <topicName>/$(arg robot_namespace)/range/rr</topicName>
+        <frameName>$(arg robot_namespace)/range_rr</frameName>
         <fov>0.1</fov>
         <radiation>ultrasound</radiation>
       </plugin>
