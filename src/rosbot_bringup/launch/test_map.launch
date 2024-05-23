@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="a" args="0 0 0 0 0 0 map map_first 100" />
+    <node pkg="tf" type="static_transform_publisher" name="b" args="0 0 0 0 0 0 map map_second 100" />
+</launch>
