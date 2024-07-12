@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find rosbot_bringup)/launch/rosbot_rviz.launch"></include>
+
+  <group ns="first">
+    <node pkg="tf" type="static_transform_publisher" name="odom" args="0 0 0 0 0 0 map_first first/odom 100" />
+    <node pkg="tf" type="static_transform_publisher" name="odom_ft" args="0 0 0 0 0 0 first/odom first/odom_ft 100" />
+  </group>
+
+  <group ns="second">
+    <node pkg="tf" type="static_transform_publisher" name="odom" args="0 2.5 0 0 0 0 map_second second/odom 100" />
+    <node pkg="tf" type="static_transform_publisher" name="odom_ft" args="0 -2.5 0 0 0 0 second/odom second/odom_ft 100" />
+  </group>
+</launch>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Gazebo with two robots -->
+  <include file="$(find rosbot_bringup)/launch/rosbot_rviz.launch">
+    <arg name="rviz_filename" value="rosbot_navigation.rviz"/>
+  </include>
+
+  <!-- SLAM -->
+  <include file="$(find rosbot_bringup)/launch/gmapping.launch">
+    <arg name="robot_ns" value="first"/>
+  </include>
+  <!-- <include file="$(find rosbot_bringup)/launch/gmapping.launch">
+    <arg name="robot_ns" value="second"/>
+  </include> -->
+
+  <!-- Navigation through waypoints -->
+  <include file="$(find rosbot_navigation)/launch/navigation.launch">
+    <arg name="robot_ns" value="first"/>
+  </include>
+  <!-- <include file="$(find rosbot_navigation)/launch/navigation.launch">
+    <arg name="robot_ns" value="second"/>
+  </include> -->
+
+  <!-- If autonomous exploration is needed, include rosbot_navigation/exploration.launch too -->
+
+</launch>

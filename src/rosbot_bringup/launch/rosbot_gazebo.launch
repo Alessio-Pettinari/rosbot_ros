@@ -10,9 +10,6 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
       <!-- <param name="tf_prefix" value="first"/> -->
     </node>
-    <node pkg="tf" type="static_transform_publisher" name="odom" args="0 0 0 0 0 0 map_first first/odom 100" />
-    <node pkg="tf" type="static_transform_publisher" name="odom_ft" args="0 0 0 0 0 0 first/odom first/odom_ft 100" />
-
   </group>
 
   <group ns="second">
@@ -22,23 +19,8 @@
 
     <rosparam command="load" file="$(find joint_state_controller)/joint_state_controller.yaml" />
     <node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller"/>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"> 
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
     </node>
-
-    <node pkg="tf" type="static_transform_publisher" name="odom" args="0 2.5 0 0 0 0 map_second second/odom 100" />
-    <node pkg="tf" type="static_transform_publisher" name="odom_ft" args="0 -2.5 0 0 0 0 second/odom second/odom_ft 100" />
-
   </group>
-
-
-
-  <!-- <rosparam command="load" file="$(find joint_state_controller)/joint_state_controller.yaml" />
-  <node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller" />
-
-  <param name="robot_description" command="$(find xacro)/xacro '$(find rosbot_description)/urdf/rosbot.xacro'"/>
-
-  <node name="rosbot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model rosbot" />
-
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> -->
 
 </launch>
