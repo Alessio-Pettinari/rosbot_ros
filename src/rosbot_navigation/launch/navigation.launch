@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <!-- Path planning -->
+    <!-- <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find tutorial_pkg)/config/move_base.yaml" command="load" />
+        <rosparam file="$(find tutorial_pkg)/config/costmap_common.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find tutorial_pkg)/config/costmap_common.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find tutorial_pkg)/config/costmap_global.yaml" command="load" />
+        <rosparam file="$(find tutorial_pkg)/config/costmap_local.yaml" command="load" />
+        <rosparam file="$(find tutorial_pkg)/config/planner_global.yaml" command="load" />
+        <rosparam file="$(find tutorial_pkg)/config/planner_local.yaml" command="load" />
+    </node> -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find rosbot_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find rosbot_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find rosbot_navigation)/config/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find rosbot_navigation)/config/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find rosbot_navigation)/config/trajectory_planner.yaml" command="load" />
+
+        <remap from="cmd_vel" to="/first/cmd_vel"/>
+        <remap from="odom" to="odom_ft"/>
+        <remap from="scan" to="/first/scan"/>
+        <param name="move_base/DWAPlannerROS/yaw_goal_tolerance" value="1.0"/>
+        <param name="move_base/DWAPlannerROS/xy_goal_tolerance" value="1.0"/>
+    </node>
+
+</launch>
