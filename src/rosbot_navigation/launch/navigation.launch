@@ -18,6 +18,10 @@
         <remap from="cmd_vel" to="/$(arg robot_ns)/cmd_vel"/>
         <remap from="scan" to="/$(arg robot_ns)/scan"/>
         <remap from="odom" to="odom_ft"/>
+
+        <!-- Rosbot goal for navigation -->
+        <remap from="/$(arg robot_ns)/move_base_simple/goal" to="exploration/goal"/>
+
     </node>
   </group>
 
