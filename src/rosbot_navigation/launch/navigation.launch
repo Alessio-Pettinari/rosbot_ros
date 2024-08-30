@@ -15,7 +15,7 @@
         <param name="move_base/DWAPlannerROS/yaw_goal_tolerance" value="1.0"/>
         <param name="move_base/DWAPlannerROS/xy_goal_tolerance" value="1.0"/>
 
-        <remap from="cmd_vel" to="/$(arg robot_ns)/cmd_vel"/>
+        <remap from="cmd_vel" to="/$(arg robot_ns)/cmd_vel_raw"/>
         <remap from="scan" to="/$(arg robot_ns)/scan"/>
         <remap from="odom" to="odom_ft"/>
 
@@ -23,6 +23,11 @@
         <remap from="/$(arg robot_ns)/move_base_simple/goal" to="exploration/goal"/>
 
     </node>
+
+    <!-- Navigation enabler -->
+    <node pkg="rosbot_navigation" type="navigation_enabler" name="navigation_enabler" output="screen">
+        <!-- <remap from="cmd_vel_raw" to="/$(arg robot_ns)/cmd_vel_raw"/>
+        <remap from="cmd_vel" to="/$(arg robot_ns)/cmd_vel"/> -->
   </group>
 
 </launch>
