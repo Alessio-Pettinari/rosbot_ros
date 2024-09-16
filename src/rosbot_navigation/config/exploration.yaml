@@ -23,6 +23,7 @@
 # inflation:
 #     inflation_radius: 0.5
 
+base_global_planner: "navfn/NavfnROS"
 robot_base_frame: first/base_link
 costmap_topic: /first/map
 costmap_updates_topic: /first/map_updates
@@ -34,3 +35,4 @@ orientation_scale: 0.0
 gain_scale: 1.0
 transform_tolerance: 0.3
 min_frontier_size: 0.7
+

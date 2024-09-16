@@ -25,7 +25,7 @@
     </node>
 
     <!-- Navigation enabler -->
-    <node pkg="rosbot_navigation" type="navigation_enabler" name="navigation_enabler" output="screen">
+    <!-- <node pkg="rosbot_navigation" type="navigation_enabler" name="navigation_enabler" output="screen" /> -->
         <!-- <remap from="cmd_vel_raw" to="/$(arg robot_ns)/cmd_vel_raw"/>
         <remap from="cmd_vel" to="/$(arg robot_ns)/cmd_vel"/> -->
   </group>
